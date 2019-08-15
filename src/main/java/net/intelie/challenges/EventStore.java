@@ -5,6 +5,8 @@ package net.intelie.challenges;
  * <p>
  * Events may be stored in memory, data files, a database, on a remote server,
  * etc. For this challenge, you should implement an in-memory event event store.
+ * 
+ * @version 1.0
  */
 public interface EventStore {
 
