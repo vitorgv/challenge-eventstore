@@ -67,10 +67,11 @@ public class EventStoreImpl implements EventStore {
 	 */
 	@Override
 	public synchronized EventIterator query(String type, long startTime, long endTime) {
-		return new EventIteratorImpl(
-				Collections.synchronizedList(eventList.stream().filter(eventList -> eventList.type().equals(type))
+		List<Event> filteredEvents = Collections
+				.synchronizedList(eventList.stream().filter(eventList -> eventList.type().equals(type))
 						.filter(eventList -> eventList.timestamp() >= startTime)
-						.filter(eventList -> eventList.timestamp() < endTime).collect(Collectors.toList())));
+						.filter(eventList -> eventList.timestamp() < endTime).collect(Collectors.toList()));
+		return new EventIteratorImpl(filteredEvents);
 	}
 
 }
